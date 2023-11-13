@@ -266,7 +266,6 @@ export class AuthService {
     }
     return false;
   }
-
   public defaultUrl(isAuthenticated: boolean, authState?: AuthState, path?: string, params?: any): UrlTree {
     let result: UrlTree = null;
     if (isAuthenticated) {
