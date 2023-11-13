@@ -15,7 +15,7 @@
  */
 @import "../../../../../scss/constants";
 
-$toolbar-height: 50px !default;
+$toolbar-height: 95px !default;
 $fullscreen-toolbar-height: 64px !default;
 $mobile-toolbar-height: 84px !default;
 $mobile-app-toolbar-height: 40px !default;
@@ -29,7 +29,7 @@ tb-dashboard-page {
 div.tb-dashboard-page {
   &.mat-content {
     overflow: hidden;
-    background-color: #eee;
+    //background-color: #eee;
   }
   section.tb-dashboard-title {
     position: relative;
@@ -68,6 +68,7 @@ div.tb-dashboard-page {
 
     &.tb-dashboard-toolbar-opened {
       right: 0;
+      //margin-top: 5rem;
       // transition: right .3s cubic-bezier(.55, 0, .55, .2);
     }
 

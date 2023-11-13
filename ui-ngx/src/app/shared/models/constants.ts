@@ -71,7 +71,7 @@ export const MediaBreakpoints = {
   'md-lg': 'screen and (min-width: 960px) and (max-width: 1819px)'
 };
 
-export const helpBaseUrl = 'https://thingsboard.io';
+export const helpBaseUrl = 'https://#';
 
 export const HelpLinks = {
   linksMap: {

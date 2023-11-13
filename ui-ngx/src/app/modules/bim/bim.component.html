@@ -1,0 +1,82 @@
+<!--
+
+    Copyright © 2016-2021 The Thingsboard Authors
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+
+<div id="scene-container"  style="height: 100%;">
+  <div class="header">
+    <div  class="bim-header">
+      <img src="assets/big/头部.png" style="position: absolute;top:0;left: 0;right:0;width: 100%;z-index:999"/>
+<!--      头部菜单-->
+      <div class="bim-title">
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+          <div class="menu-left _smenu">
+            <div *ngFor="let menu of menus1;let i=index" class="head-menu" (click)="changeMenu(menu)" [class]="'mmen'+i" >
+              <img [src]="menu.curImg" class="menu_img"/>
+              <div class="bg1" >{{menu.title}}</div>
+            </div>
+          </div>
+          <div class="menu-right _smenu">
+            <div *ngFor="let menu of menus2;let i=index" class="head-menu" (click)="changeMenu(menu)" [class]="'mmen'+i" >
+              <img [src]="menu.curImg" class="menu_img"/>
+              <div class="bg1" >{{menu.title}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div  style="height: 100%;">
+    <div class="inner-content" style="height: 100%;">
+      <router-outlet (activate)="activeComponentChanged($event)"></router-outlet>
+      </div>
+  </div>
+
+
+<!--  左边框-->
+
+<!--  <div style="position: absolute;top:120px;left: 16px;height: 100%">-->
+<!--    <div style="height: 100%;position: relative">-->
+<!--      <img src="assets/bim/left.png" />-->
+<!--    </div>-->
+<!--  </div>-->
+
+
+<!--  有边框-->
+<!--  <div style="position: absolute;top:120px;right: 16px;height: 100%">-->
+<!--    <div style="height: 100%;position: relative">-->
+<!--      <img src="assets/bim/right.png" />-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="bim-foot" [ngStyle]="currentStyle">-->
+<!--    <div class="foot-inner">-->
+<!--      <img src="assets/bim/bottom.png"  style="position: absolute;bottom:10px;left: 0;right:0;width: 100%" />-->
+<!--      <img src="assets/bim/bottom-center.png" />-->
+<!--      <div class="menu">-->
+<!--        <div *ngFor="let menu of menus" (click)="openState(menu)"  class="menu-item">-->
+<!--          <img [src]="menu.img" style="width:17px"/>-->
+<!--          <div class="menu-title">-->
+<!--            {{menu.title}}-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+
+</div>

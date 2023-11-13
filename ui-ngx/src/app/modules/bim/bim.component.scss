@@ -1,0 +1,114 @@
+:host{
+  width: 100%;
+  min-height: 1080px;
+  //background: #0F161D;
+  background-image: url("../../../assets/bg.png");
+  background-size: 100% 100%;
+
+  *{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    list-style-type: none;
+
+  }
+._smenu{
+  width: 33%;
+  display: flex;
+  justify-content: space-around;
+}
+  .head-menu{
+    position: relative;
+    width: 160px;
+    display: flex;
+    justify-content: center;
+    img{
+      position: absolute;
+      top:0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+  .header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+
+  .bim-header{
+    background-color: transparent !important;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 0px 10px;
+
+    .bim-title{
+      color: #FFFFFF;
+      font-size: 18px;
+      font-weight: 500;
+      margin-top: 2.5rem;
+      flex: 1;
+      z-index: 1000;
+    }
+    @media (max-width: 2560px) {
+      .bim-title{
+        margin-top: 3.5rem;
+        .menu_img{
+          width: 160px;
+        }
+        .bg1{
+          font-size:14px;
+          margin-top: 8px;
+        }
+      }
+    }
+    @media (max-width: 1920px) {
+      .bim-title{
+        margin-top: 2.5rem;
+        .menu_img{
+          width: 160px;
+        }
+        .bg1{
+          font-size:14px;
+          margin-top: 8px;
+        }
+      }
+    }
+  }
+  .bim-foot{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    height: 60px;
+    z-index: 999;
+    .foot-inner{
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      .menu{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        .menu-item{
+          display: flex;
+          margin-right: 16px;
+          align-self: center;
+          cursor: pointer;
+          .menu-title{
+            color: #ffffff;
+            font-weight: 400;
+            font-size: 16px;
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+  }
+
+
+}

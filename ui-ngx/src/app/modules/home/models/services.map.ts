@@ -44,9 +44,10 @@ import { TelemetryWebsocketService } from '@core/ws/telemetry-websocket.service'
 import { NotificationService } from '@core/http/notification.service';
 import { MillisecondsToTimeStringPipe } from '@shared/pipe/milliseconds-to-time-string.pipe';
 import { UserSettingsService } from '@core/http/user-settings.service';
-
+import { EchartsService }  from "@core/services/echarts-utils.service";
 export const ServicesMap = new Map<string, Type<any>>(
   [
+    ['echartsService',EchartsService],
    ['broadcastService', BroadcastService],
    ['deviceService', DeviceService],
    ['alarmService', AlarmService],

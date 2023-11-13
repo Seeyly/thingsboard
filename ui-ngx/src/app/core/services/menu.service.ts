@@ -357,88 +357,89 @@ export class MenuService {
     sections.push(
       {
         id: 'home',
-        name: 'home.home',
+        name: '首页',
         type: 'link',
         path: '/home',
         icon: 'home'
       },
       {
         id: 'alarms',
-        name: 'alarm.alarms',
+        name: '告警管理',
         type: 'link',
         path: '/alarms',
         icon: 'mdi:alert-outline'
       },
       {
         id: 'dashboards',
-        name: 'dashboard.dashboards',
+        name: '可视管理',
         type: 'link',
         path: '/dashboards',
-        icon: 'dashboards'
+        icon: 'dashboard'
       },
       {
         id: 'entities',
-        name: 'entity.entities',
+        name: '设备管理',
         type: 'toggle',
         path: '/entities',
-        icon: 'category',
+        icon: 'apartment',
         pages: [
           {
             id: 'devices',
-            name: 'device.devices',
+            name: '设备列表',
             type: 'link',
             path: '/entities/devices',
-            icon: 'devices_other'
+            icon: ''
           },
           {
             id: 'assets',
-            name: 'asset.assets',
+            name: '资产列表',
             type: 'link',
             path: '/entities/assets',
-            icon: 'domain'
-          },
-          {
-            id: 'entity_views',
-            name: 'entity-view.entity-views',
-            type: 'link',
-            path: '/entities/entityViews',
-            icon: 'view_quilt'
+            icon: ''
           }
+          // {
+          //   id: 'entity_views',
+          //   name: 'entity-view.entity-views',
+          //   type: 'link',
+          //   level: 2,
+          //   path: '/entities/entityViews',
+          //   icon: 'view_quilt'
+          // }
         ]
       },
       {
         id: 'profiles',
-        name: 'profiles.profiles',
+        name: '类型配置',
         type: 'toggle',
         path: '/profiles',
         icon: 'badge',
         pages: [
           {
             id: 'device_profiles',
-            name: 'device-profile.device-profiles',
+            name: '设备配置',
             type: 'link',
             path: '/profiles/deviceProfiles',
-            icon: 'mdi:alpha-d-box'
+            icon: ''
           },
           {
             id: 'asset_profiles',
-            name: 'asset-profile.asset-profiles',
+            name: '资产配置',
             type: 'link',
             path: '/profiles/assetProfiles',
-            icon: 'mdi:alpha-a-box'
+            icon: ''
           }
         ]
       },
       {
         id: 'customers',
-        name: 'customer.customers',
+        name: '客户项目',
         type: 'link',
         path: '/customers',
         icon: 'supervisor_account'
       },
       {
         id: 'rule_chains',
-        name: 'rulechain.rulechains',
+        name: '场景联动',
         type: 'link',
         path: '/ruleChains',
         icon: 'settings_ethernet'
@@ -448,26 +449,26 @@ export class MenuService {
       sections.push(
         {
           id: 'edge_management',
-          name: 'edge.management',
+          name: '边缘管理',
           type: 'toggle',
           path: '/edgeManagement',
           icon: 'settings_input_antenna',
           pages: [
             {
               id: 'edges',
-              name: 'edge.instances',
+              name: '边缘设备管理',
               fullName: 'edge.edge-instances',
               type: 'link',
               path: '/edgeManagement/instances',
-              icon: 'router'
+              icon: ''
             },
             {
               id: 'rulechain_templates',
-              name: 'edge.rulechain-templates',
+              name: '规则配置',
               fullName: 'edge.edge-rulechain-templates',
               type: 'link',
               path: '/edgeManagement/ruleChains',
-              icon: 'settings_ethernet'
+              icon: ''
             }
           ]
         }
@@ -476,30 +477,30 @@ export class MenuService {
     sections.push(
       {
         id: 'features',
-        name: 'feature.advanced-features',
+        name: '高级功能',
         type: 'toggle',
         path: '/features',
         icon: 'construction',
         pages: [
           {
             id: 'otaUpdates',
-            name: 'ota-update.ota-updates',
+            name: 'ota固件管理',
             type: 'link',
             path: '/features/otaUpdates',
-            icon: 'memory'
+            icon: ''
           },
           {
             id: 'version_control',
-            name: 'version-control.version-control',
+            name: '版本控制',
             type: 'link',
             path: '/features/vc',
-            icon: 'history'
+            icon: ''
           }
         ]
       },
       {
         id: 'resources',
-        name: 'admin.resources',
+        name: '资源管理',
         type: 'toggle',
         path: '/resources',
         icon: 'folder',
@@ -509,7 +510,7 @@ export class MenuService {
             name: 'widget.widget-library',
             type: 'link',
             path: '/resources/widgets-library',
-            icon: 'now_widgets',
+            icon: '',
             pages: [
               {
                 id: 'widget_types',
@@ -532,7 +533,7 @@ export class MenuService {
             name: 'resource.resources-library',
             type: 'link',
             path: '/resources/resources-library',
-            icon: 'mdi:rhombus-split'
+            icon: ''
           }
         ]
       },
@@ -587,14 +588,14 @@ export class MenuService {
       },
       {
         id: 'api_usage',
-        name: 'api-usage.api-usage',
+        name: '接口统计',
         type: 'link',
         path: '/usage',
         icon: 'insert_chart'
       },
       {
         id: 'settings',
-        name: 'admin.settings',
+        name: '系统设置',
         type: 'link',
         path: '/settings',
         icon: 'settings',
@@ -635,7 +636,7 @@ export class MenuService {
       },
       {
         id: 'security_settings',
-        name: 'security.security',
+        name: '日志记录',
         type: 'toggle',
         path: '/security-settings',
         icon: 'security',
@@ -645,7 +646,7 @@ export class MenuService {
             name: 'audit-log.audit-logs',
             type: 'link',
             path: '/security-settings/auditLogs',
-            icon: 'track_changes'
+            icon: ''
           }
         ]
       }
@@ -830,14 +831,14 @@ export class MenuService {
       },
       {
         id: 'dashboards',
-        name: 'dashboard.dashboards',
+        name: '可视化页面',
         type: 'link',
         path: '/dashboards',
         icon: 'dashboards'
       },
       {
         id: 'entities',
-        name: 'entity.entities',
+        name: '设备资产',
         type: 'toggle',
         path: '/entities',
         icon: 'category',
@@ -867,16 +868,16 @@ export class MenuService {
       }
     );
     if (authState.edgesSupportEnabled) {
-      sections.push(
-        {
-          id: 'edges',
-          name: 'edge.edge-instances',
-          fullName: 'edge.edge-instances',
-          type: 'link',
-          path: '/edgeManagement/instances',
-          icon: 'router'
-        }
-      );
+      // sections.push(
+      //   {
+      //     id: 'edges',
+      //     name: 'edge.edge-instances',
+      //     fullName: 'edge.edge-instances',
+      //     type: 'link',
+      //     path: '/edgeManagement/instances',
+      //     icon: 'router'
+      //   }
+      // );
     }
     sections.push(
       {

@@ -18,7 +18,7 @@
 <div class="tb-dashboard-page mat-content" [ngClass]="{'mobile-app': isMobileApp && !isEdit}"
      fxFlex tb-fullscreen [fullscreenElement]="elRef.nativeElement" [fullscreen]="widgetEditMode || iframeMode || forceFullscreen || isFullscreen">
   <tb-hotkeys-cheatsheet #cheatSheetComponent></tb-hotkeys-cheatsheet>
-  <section class="tb-dashboard-toolbar"
+  <section class="tb-dashboard-toolbar" style="z-index: 99999" [fxShow]="isTenantAdmin()"
            [ngClass]="{ 'tb-dashboard-toolbar-opened': toolbarOpened,
                         'tb-dashboard-toolbar-closed': !toolbarOpened }">
     <tb-dashboard-toolbar [fxShow]="!widgetEditMode && !hideToolbar" [forceFullscreen]="forceFullscreen"
@@ -351,7 +351,7 @@
             <mat-icon>close</mat-icon></button>
         </section>
         <section *ngIf="!embedded" data-html2canvas-ignore class="tb-powered-by-footer" [ngStyle]="{'color': dashboard.configuration.settings.titleColor}">
-          <span>Powered by <a href="https://thingsboard.io" target="_blank">Thingsboard v.{{ thingsboardVersion }}</a></span>
+<!--          <span>Powered by <a href="https://yexiong.com" target="_blank">Thingsboard v.{{ thingsboardVersion }}</a></span>-->
         </section>
       </mat-drawer-content>
       <mat-drawer class="tb-details-drawer"
