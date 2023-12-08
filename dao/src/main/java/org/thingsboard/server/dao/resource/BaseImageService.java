@@ -27,6 +27,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Base64Utils;
 import org.thingsboard.common.util.JacksonUtil;
@@ -78,7 +79,6 @@ import java.util.regex.Pattern;
 public class BaseImageService extends BaseResourceService implements ImageService {
 
     private static final int MAX_ENTITIES_TO_FIND = 10;
-    private static final String DEFAULT_CONFIG_TAG = "defaultConfig";
 
     public static Map<String, String> DASHBOARD_BASE64_MAPPING = new HashMap<>();
     public static Map<String, String> WIDGET_TYPE_BASE64_MAPPING = new HashMap<>();
@@ -273,7 +273,7 @@ public class BaseImageService extends BaseResourceService implements ImageServic
         return resourceInfoDao.findSystemOrTenantImageByEtag(tenantId, ResourceType.IMAGE, etag);
     }
 
-    @Transactional(noRollbackFor = Exception.class) // we don't want transaction to rollback in case of an image processing failure
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)// we don't want transaction to rollback in case of an image processing failure
     @Override
     public boolean replaceBase64WithImageUrl(HasImage entity, String type) {
         log.trace("Executing replaceBase64WithImageUrl [{}] [{}] [{}]", entity.getTenantId(), type, entity.getName());
@@ -288,7 +288,7 @@ public class BaseImageService extends BaseResourceService implements ImageServic
         return result.isUpdated();
     }
 
-    @Transactional(noRollbackFor = Exception.class) // we don't want transaction to rollback in case of an image processing failure
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)// we don't want transaction to rollback in case of an image processing failure
     @Override
     public boolean replaceBase64WithImageUrl(WidgetTypeDetails entity) {
         log.trace("Executing replaceBase64WithImageUrl [{}] [WidgetTypeDetails] [{}]", entity.getTenantId(), entity.getId());
@@ -302,19 +302,19 @@ public class BaseImageService extends BaseResourceService implements ImageServic
         boolean updated = result.isUpdated();
         if (entity.getDescriptor().isObject()) {
             ObjectNode descriptor = (ObjectNode) entity.getDescriptor();
-            JsonNode defaultConfig = Optional.ofNullable(descriptor.get(DEFAULT_CONFIG_TAG))
+            JsonNode defaultConfig = Optional.ofNullable(descriptor.get("defaultConfig"))
                     .filter(JsonNode::isTextual).map(JsonNode::asText)
                     .map(JacksonUtil::toJsonNode).orElse(null);
             if (defaultConfig != null) {
                 updated |= base64ToImageUrlUsingMapping(entity.getTenantId(), WIDGET_TYPE_BASE64_MAPPING, Collections.singletonMap("prefix", prefix), defaultConfig);
-                descriptor.put(DEFAULT_CONFIG_TAG, defaultConfig.toString());
+                descriptor.put("defaultConfig", defaultConfig.toString());
             }
         }
         updated |= base64ToImageUrlRecursively(entity.getTenantId(), prefix, entity.getDescriptor());
         return updated;
     }
 
-    @Transactional(noRollbackFor = Exception.class) // we don't want transaction to rollback in case of an image processing failure
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)// we don't want transaction to rollback in case of an image processing failure
     @Override
     public boolean replaceBase64WithImageUrl(Dashboard entity) {
         log.trace("Executing replaceBase64WithImageUrl [{}] [Dashboard] [{}]", entity.getTenantId(), entity.getId());
@@ -462,8 +462,6 @@ public class BaseImageService extends BaseResourceService implements ImageServic
                 }
                 return UpdateResult.of(false, data);
             }
-        } else {
-            log.debug("[{}] Using existing image {} ({} - '{}') for '{}'", tenantId, imageInfo.getResourceKey(), imageInfo.getTenantId(), imageInfo.getName(), name);
         }
         return UpdateResult.of(true, DataConstants.TB_IMAGE_PREFIX + imageInfo.getLink());
     }
@@ -519,27 +517,37 @@ public class BaseImageService extends BaseResourceService implements ImageServic
     public void inlineImages(Dashboard dashboard) {
         log.trace("Executing inlineImage [{}] [Dashboard] [{}]", dashboard.getTenantId(), dashboard.getId());
         inlineImage(dashboard);
-        inlineIntoJson(dashboard.getTenantId(), dashboard.getConfiguration());
+        inlineIntoJson(dashboard.getTenantId(), dashboard.getConfiguration(), true);
     }
 
     @Override
     public void inlineImages(WidgetTypeDetails widgetTypeDetails) {
         log.trace("Executing inlineImage [{}] [WidgetTypeDetails] [{}]", widgetTypeDetails.getTenantId(), widgetTypeDetails.getId());
         inlineImage(widgetTypeDetails);
-        ObjectNode descriptor = (ObjectNode) widgetTypeDetails.getDescriptor();
-        inlineIntoJson(widgetTypeDetails.getTenantId(), descriptor);
-        if (descriptor.has(DEFAULT_CONFIG_TAG) && descriptor.get(DEFAULT_CONFIG_TAG).isTextual()) {
-            try {
-                var defaultConfig = JacksonUtil.toJsonNode(descriptor.get(DEFAULT_CONFIG_TAG).asText());
-                inlineIntoJson(widgetTypeDetails.getTenantId(), defaultConfig);
-                descriptor.put(DEFAULT_CONFIG_TAG, JacksonUtil.toString(defaultConfig));
-            } catch (Exception e) {
-                log.debug("[{}][{}] Failed to process default config: ", widgetTypeDetails.getTenantId(), widgetTypeDetails.getId(), e);
-            }
-        }
+        inlineIntoJson(widgetTypeDetails.getTenantId(), widgetTypeDetails.getDescriptor(), true);
     }
 
-    private void inlineIntoJson(TenantId tenantId, JsonNode root) {
+    @Override
+    public void inlineImageForEdge(HasImage entity) {
+        log.trace("Executing inlineImageForEdge [{}] [{}] [{}]", entity.getTenantId(), entity.getClass().getSimpleName(), entity.getName());
+        entity.setImage(inlineImage(entity.getTenantId(), "image", entity.getImage(), false));
+    }
+
+    @Override
+    public void inlineImagesForEdge(Dashboard dashboard) {
+        log.trace("Executing inlineImagesForEdge [{}] [Dashboard] [{}]", dashboard.getTenantId(), dashboard.getId());
+        inlineImageForEdge(dashboard);
+        inlineIntoJson(dashboard.getTenantId(), dashboard.getConfiguration(), false);
+    }
+
+    @Override
+    public void inlineImagesForEdge(WidgetTypeDetails widgetTypeDetails) {
+        log.trace("Executing inlineImage [{}] [WidgetTypeDetails] [{}]", widgetTypeDetails.getTenantId(), widgetTypeDetails.getId());
+        inlineImageForEdge(widgetTypeDetails);
+        inlineIntoJson(widgetTypeDetails.getTenantId(), widgetTypeDetails.getDescriptor(), false);
+    }
+
+    private void inlineIntoJson(TenantId tenantId, JsonNode root, boolean addTbImagePrefix) {
         Queue<JsonNodeProcessingTask> tasks = new LinkedList<>();
         tasks.add(new JsonNodeProcessingTask("", root));
         while (!tasks.isEmpty()) {
@@ -555,7 +563,7 @@ public class BaseImageService extends BaseResourceService implements ImageServic
                     String childName = it.next();
                     JsonNode childValue = on.get(childName);
                     if (childValue.isTextual()) {
-                        on.put(childName, inlineImage(tenantId, currentPath + childName, childValue.asText()));
+                        on.put(childName, inlineImage(tenantId, currentPath + childName, childValue.asText(), addTbImagePrefix));
                     } else if (childValue.isObject() || childValue.isArray()) {
                         tasks.add(new JsonNodeProcessingTask(currentPath + childName, childValue));
                     }
@@ -567,7 +575,7 @@ public class BaseImageService extends BaseResourceService implements ImageServic
                     if (element.isObject()) {
                         tasks.add(new JsonNodeProcessingTask(currentPath + "." + i, element));
                     } else if (element.isTextual()) {
-                        childArray.set(i, inlineImage(tenantId, currentPath + "." + i, element.asText()));
+                        childArray.set(i, inlineImage(tenantId, currentPath + "." + i, element.asText(), addTbImagePrefix));
                     }
                 }
             }
@@ -575,6 +583,10 @@ public class BaseImageService extends BaseResourceService implements ImageServic
     }
 
     private String inlineImage(TenantId tenantId, String path, String url) {
+        return inlineImage(tenantId, path, url, true);
+    }
+
+    private String inlineImage(TenantId tenantId, String path, String url, boolean addTbImagePrefix) {
         try {
             ImageCacheKey key = getKeyFromUrl(tenantId, url);
             if (key != null) {
@@ -582,8 +594,11 @@ public class BaseImageService extends BaseResourceService implements ImageServic
                 if (imageInfo != null) {
                     byte[] data = key.isPreview() ? getImagePreview(tenantId, imageInfo.getId()) : getImageData(tenantId, imageInfo.getId());
                     ImageDescriptor descriptor = getImageDescriptor(imageInfo, key.isPreview());
-                    String tbImagePrefix = "tb-image:" + Base64Utils.encodeToString(imageInfo.getResourceKey().getBytes(StandardCharsets.UTF_8)) + ":"
-                            + Base64Utils.encodeToString(imageInfo.getName().getBytes(StandardCharsets.UTF_8)) + ";";
+                    String tbImagePrefix = "";
+                    if (addTbImagePrefix) {
+                        tbImagePrefix = "tb-image:" + Base64Utils.encodeToString(imageInfo.getResourceKey().getBytes(StandardCharsets.UTF_8)) + ":"
+                                + Base64Utils.encodeToString(imageInfo.getName().getBytes(StandardCharsets.UTF_8)) + ";";
+                    }
                     return tbImagePrefix + "data:" + descriptor.getMediaType() + ";base64," + Base64Utils.encodeToString(data);
                 }
             }
