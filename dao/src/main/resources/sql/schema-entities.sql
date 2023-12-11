@@ -503,6 +503,7 @@ CREATE TABLE IF NOT EXISTS widgets_bundle (
     title varchar(255),
     image varchar(1000000),
     description varchar(1024),
+    widgets_bundle_order int,
     external_id uuid,
     CONSTRAINT uq_widgets_bundle_alias UNIQUE (tenant_id, alias),
     CONSTRAINT widgets_bundle_external_id_unq_key UNIQUE (tenant_id, external_id)
@@ -713,8 +714,11 @@ CREATE TABLE IF NOT EXISTS resource (
     resource_key varchar(255) NOT NULL,
     search_text varchar(255),
     file_name varchar(255) NOT NULL,
-    data varchar,
+    data bytea,
     etag varchar,
+    descriptor varchar,
+    preview bytea,
+    external_id uuid,
     CONSTRAINT resource_unq_key UNIQUE (tenant_id, resource_type, resource_key)
 );
 
