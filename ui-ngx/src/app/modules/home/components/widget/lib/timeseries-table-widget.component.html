@@ -52,6 +52,7 @@
                           [ngStyle]="cellStyle(source, null, 0, row, row[0], rowIndex)">
                 </mat-cell>
               </ng-container>
+
               <ng-container [matColumnDef]="h.index + ''" *ngFor="let h of source.header; trackBy: trackByColumnIndex;">
                 <mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="!h.sortable"> {{ h.dataKey.label }} </mat-header-cell>
                 <mat-cell *matCellDef="let row; let rowIndex = index"
@@ -59,6 +60,7 @@
                           [ngStyle]="cellStyle(source, h, h.index, row, row[h.index], rowIndex)">
                 </mat-cell>
               </ng-container>
+
               <ng-container matColumnDef="actions" [stickyEnd]="enableStickyAction">
                 <mat-header-cell *matHeaderCellDef [ngStyle.gt-md]="{ minWidth: (source.timeseriesDatasource.countCellButtonAction * 40) + 'px',
                                                                       maxWidth: (source.timeseriesDatasource.countCellButtonAction * 40) + 'px',

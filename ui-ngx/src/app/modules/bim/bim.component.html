@@ -19,7 +19,7 @@
 <div id="scene-container"  style="height: 100%;">
   <div class="header">
     <div  class="bim-header">
-      <img src="assets/big/头部.png" style="position: absolute;top:0;left: 0;right:0;width: 100%;z-index:999"/>
+      <img src="assets/big/头部2.png" style="position: absolute;top:0;left: 0;right:0;width: 100%;z-index:997;height:110px"/>
 <!--      头部菜单-->
       <div class="bim-title">
         <div fxLayout="row" fxLayoutAlign="space-between start">
@@ -35,6 +35,11 @@
               <div class="bg1" >{{menu.title}}</div>
             </div>
           </div>
+        </div>
+      </div>
+      <div style="z-index: 998">
+        <div [routerLink]="'/home'" >
+          <img src="assets/big/jrht.png" class="menu_img"/>
         </div>
       </div>
     </div>

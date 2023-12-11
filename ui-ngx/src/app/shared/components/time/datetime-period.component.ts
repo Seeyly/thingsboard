@@ -17,6 +17,7 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FixedWindow } from '@shared/models/time/time.models';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
 
 @Component({
   selector: 'tb-datetime-period',
@@ -28,6 +29,7 @@ import { FixedWindow } from '@shared/models/time/time.models';
       useExisting: forwardRef(() => DatetimePeriodComponent),
       multi: true
     }
+
   ]
 })
 export class DatetimePeriodComponent implements OnInit, ControlValueAccessor {
@@ -35,12 +37,15 @@ export class DatetimePeriodComponent implements OnInit, ControlValueAccessor {
   @Input() disabled: boolean;
 
   modelValue: FixedWindow;
+  datepickerFormat = 'yyyy-MM-dd'; // 你想要的日期格式
 
   startDate: Date;
   endDate: Date;
 
   endTime: any;
+  dates = null;
 
+  minDate = new Date(new Date().setMonth(0));
   maxStartDate: Date;
   minEndDate: Date;
   maxEndDate: Date;
@@ -89,6 +94,11 @@ export class DatetimePeriodComponent implements OnInit, ControlValueAccessor {
       this.updateView();
     }
     this.updateMinMaxDates();
+  }
+  onChange(result: Date[]){
+    this.startDate = result[0];
+    this.endDate = result[1];
+
   }
 
   updateView() {

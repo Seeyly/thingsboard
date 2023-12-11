@@ -66,6 +66,11 @@
                 mat-icon-button (click)="openSearch()">
           <mat-icon class="material-icons">search</mat-icon>
         </button>
+
+        <dvi   routerLink="/bim">
+          可视化大屏
+        </dvi>
+
         <button *ngIf="fullscreenEnabled" [fxShow]="!displaySearchMode()"
                 mat-icon-button fxHide.lt-md (click)="toggleFullscreen()">
           <mat-icon class="material-icons">{{ isFullscreen() ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>

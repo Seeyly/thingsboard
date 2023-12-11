@@ -216,28 +216,28 @@ export class MenuService {
             path: '/settings/general',
             icon: 'settings_applications'
           },
-          {
-            id: 'mail_server',
-            name: 'admin.outgoing-mail',
-            type: 'link',
-            path: '/settings/outgoing-mail',
-            icon: 'mail'
-          },
-          {
-            id: 'notification_settings',
-            name: 'admin.notifications',
-            fullName: 'admin.notifications-settings',
-            type: 'link',
-            path: '/settings/notifications',
-            icon: 'mdi:message-badge'
-          },
-          {
-            id: 'queues',
-            name: 'admin.queues',
-            type: 'link',
-            path: '/settings/queues',
-            icon: 'swap_calls'
-          },
+          // {
+          //   id: 'mail_server',
+          //   name: 'admin.outgoing-mail',
+          //   type: 'link',
+          //   path: '/settings/outgoing-mail',
+          //   icon: 'mail'
+          // },
+          // {
+          //   id: 'notification_settings',
+          //   name: 'admin.notifications',
+          //   fullName: 'admin.notifications-settings',
+          //   type: 'link',
+          //   path: '/settings/notifications',
+          //   icon: 'mdi:message-badge'
+          // },
+          // {
+          //   id: 'queues',
+          //   name: 'admin.queues',
+          //   type: 'link',
+          //   path: '/settings/queues',
+          //   icon: 'swap_calls'
+          // },
         ]
       },
       {
@@ -409,7 +409,7 @@ export class MenuService {
       },
       {
         id: 'profiles',
-        name: '类型配置',
+        name: '配置管理',
         type: 'toggle',
         path: '/profiles',
         icon: 'badge',
@@ -445,59 +445,59 @@ export class MenuService {
         icon: 'settings_ethernet'
       }
     );
-    if (authState.edgesSupportEnabled) {
-      sections.push(
-        {
-          id: 'edge_management',
-          name: '边缘管理',
-          type: 'toggle',
-          path: '/edgeManagement',
-          icon: 'settings_input_antenna',
-          pages: [
-            {
-              id: 'edges',
-              name: '边缘设备管理',
-              fullName: 'edge.edge-instances',
-              type: 'link',
-              path: '/edgeManagement/instances',
-              icon: ''
-            },
-            {
-              id: 'rulechain_templates',
-              name: '规则配置',
-              fullName: 'edge.edge-rulechain-templates',
-              type: 'link',
-              path: '/edgeManagement/ruleChains',
-              icon: ''
-            }
-          ]
-        }
-      );
-    }
+    // if (authState.edgesSupportEnabled) {
+    //   sections.push(
+    //     {
+    //       id: 'edge_management',
+    //       name: '边缘管理',
+    //       type: 'toggle',
+    //       path: '/edgeManagement',
+    //       icon: 'settings_input_antenna',
+    //       pages: [
+    //         {
+    //           id: 'edges',
+    //           name: '边缘设备管理',
+    //           fullName: 'edge.edge-instances',
+    //           type: 'link',
+    //           path: '/edgeManagement/instances',
+    //           icon: ''
+    //         },
+    //         {
+    //           id: 'rulechain_templates',
+    //           name: '规则配置',
+    //           fullName: 'edge.edge-rulechain-templates',
+    //           type: 'link',
+    //           path: '/edgeManagement/ruleChains',
+    //           icon: ''
+    //         }
+    //       ]
+    //     }
+    //   );
+    // }
     sections.push(
-      {
-        id: 'features',
-        name: '高级功能',
-        type: 'toggle',
-        path: '/features',
-        icon: 'construction',
-        pages: [
-          {
-            id: 'otaUpdates',
-            name: 'ota固件管理',
-            type: 'link',
-            path: '/features/otaUpdates',
-            icon: ''
-          },
-          {
-            id: 'version_control',
-            name: '版本控制',
-            type: 'link',
-            path: '/features/vc',
-            icon: ''
-          }
-        ]
-      },
+      // {
+      //   id: 'features',
+      //   name: '高级功能',
+      //   type: 'toggle',
+      //   path: '/features',
+      //   icon: 'construction',
+      //   pages: [
+      //     {
+      //       id: 'otaUpdates',
+      //       name: 'ota固件管理',
+      //       type: 'link',
+      //       path: '/features/otaUpdates',
+      //       icon: ''
+      //     },
+      //     {
+      //       id: 'version_control',
+      //       name: '版本控制',
+      //       type: 'link',
+      //       path: '/features/vc',
+      //       icon: ''
+      //     }
+      //   ]
+      // },
       {
         id: 'resources',
         name: '资源管理',
@@ -608,30 +608,30 @@ export class MenuService {
             path: '/settings/home',
             icon: 'settings_applications'
           },
-          {
-            id: 'notification_settings',
-            name: 'admin.notifications',
-            fullName: 'admin.notifications-settings',
-            type: 'link',
-            path: '/settings/notifications',
-            icon: 'mdi:message-badge'
-          },
-          {
-            id: 'repository_settings',
-            name: 'admin.repository',
-            fullName: 'admin.repository-settings',
-            type: 'link',
-            path: '/settings/repository',
-            icon: 'manage_history'
-          },
-          {
-            id: 'auto_commit_settings',
-            name: 'admin.auto-commit',
-            fullName: 'admin.auto-commit-settings',
-            type: 'link',
-            path: '/settings/auto-commit',
-            icon: 'settings_backup_restore'
-          }
+          // {
+          //   id: 'notification_settings',
+          //   name: 'admin.notifications',
+          //   fullName: 'admin.notifications-settings',
+          //   type: 'link',
+          //   path: '/settings/notifications',
+          //   icon: 'mdi:message-badge'
+          // },
+          // {
+          //   id: 'repository_settings',
+          //   name: 'admin.repository',
+          //   fullName: 'admin.repository-settings',
+          //   type: 'link',
+          //   path: '/settings/repository',
+          //   icon: 'manage_history'
+          // },
+          // {
+          //   id: 'auto_commit_settings',
+          //   name: 'admin.auto-commit',
+          //   fullName: 'admin.auto-commit-settings',
+          //   type: 'link',
+          //   path: '/settings/auto-commit',
+          //   icon: 'settings_backup_restore'
+          // }
         ]
       },
       {
@@ -856,14 +856,14 @@ export class MenuService {
             type: 'link',
             path: '/entities/assets',
             icon: 'domain'
-          },
-          {
-            id: 'entity_views',
-            name: 'entity-view.entity-views',
-            type: 'link',
-            path: '/entities/entityViews',
-            icon: 'view_quilt'
           }
+          // {
+          //   id: 'entity_views',
+          //   name: 'entity-view.entity-views',
+          //   type: 'link',
+          //   path: '/entities/entityViews',
+          //   icon: 'view_quilt'
+          // }
         ]
       }
     );

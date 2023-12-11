@@ -30,12 +30,12 @@
     <tb-dashboard-page [embedded]="true" [syncStateWithQueryParam]="false" [hideToolbar]="hideToolbar"
                        [currentState]="state" [dashboard]="dashboard" [parentDashboard]="parentDashboard" style="width: 100%; height: 100%;"></tb-dashboard-page>
   </div>
-  <div mat-dialog-actions fxLayoutAlign="end center">
-    <button mat-button color="primary"
-            type="button"
-            [disabled]="(isLoading$ | async)"
-            (click)="close()" cdkFocusInitial>
-      {{ 'action.close' | translate }}
-    </button>
-  </div>
+<!--  <div mat-dialog-actions fxLayoutAlign="end center">-->
+<!--    <button mat-button color="primary"-->
+<!--            type="button"-->
+<!--            [disabled]="(isLoading$ | async)"-->
+<!--            (click)="close()" cdkFocusInitial>-->
+<!--      {{ 'action.close' | translate }}-->
+<!--    </button>-->
+<!--  </div>-->
 </div>

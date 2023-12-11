@@ -62,7 +62,7 @@
       "es2020",
       "dom"
     ],
-    "useDefineForClassFields": false
+      "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -70,4 +70,5 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": false
   }
+
 }
