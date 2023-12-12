@@ -23,9 +23,10 @@
                [opened]="sidenavOpened && !forceFullscreen">
     <header class="tb-nav-header">
       <mat-toolbar color="primary" class="tb-nav-header-toolbar">
-        <div fxFlex="auto" fxLayout="row">
-          <img [src]="logo"
-               aria-label="logo" class="tb-logo-title"/>
+        <div fxFlex="auto" fxLayout="row" fxFlexAlign="center" style="justify-content: flex-start">
+<!--          <img [src]="logo"-->
+<!--               aria-label="logo" class="tb-logo-title"/>-->
+          <div class="log-txt">盘古大观中央空调监测系统</div>
         </div>
       </mat-toolbar>
     </header>
@@ -65,6 +66,11 @@
                 mat-icon-button (click)="openSearch()">
           <mat-icon class="material-icons">search</mat-icon>
         </button>
+
+        <dvi   routerLink="/bim">
+          可视化大屏
+        </dvi>
+
         <button *ngIf="fullscreenEnabled" [fxShow]="!displaySearchMode()"
                 mat-icon-button fxHide.lt-md (click)="toggleFullscreen()">
           <mat-icon class="material-icons">{{ isFullscreen() ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>

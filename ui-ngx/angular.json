@@ -97,7 +97,9 @@
               "node_modules/@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css",
               "node_modules/prismjs/themes/prism.css",
               "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css",
-              "node_modules/ace-diff/dist/ace-diff.min.css"
+              "node_modules/ace-diff/dist/ace-diff.min.css",
+                "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+                "node_modules/ng-devui/devui.min.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

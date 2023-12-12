@@ -22,7 +22,10 @@ import org.springframework.stereotype.Service;
 import org.thingsboard.common.util.JacksonUtil;
 
 import javax.annotation.PostConstruct;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 @Service
 @Slf4j
@@ -32,7 +35,17 @@ public class DefaultTbMailConfigTemplateService implements TbMailConfigTemplateS
 
     @PostConstruct
     private void postConstruct() throws IOException {
-        mailConfigTemplates = JacksonUtil.toJsonNode(new ClassPathResource("/templates/mail_config_templates.json").getFile());
+//        mailConfigTemplates = JacksonUtil.toJsonNode(new ClassPathResource("/templates/mail_config_templates.json").getFile());
+        InputStream inputStream = getClass().getResourceAsStream("/templates/mail_config_templates.json");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        StringBuilder stringBuilder = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            stringBuilder.append(line);
+        }
+        String fileContent = stringBuilder.toString();
+        mailConfigTemplates = JacksonUtil.toJsonNode(fileContent);
+
     }
 
     @Override
@@ -40,3 +53,6 @@ public class DefaultTbMailConfigTemplateService implements TbMailConfigTemplateS
         return mailConfigTemplates;
     }
 }
+
+
+

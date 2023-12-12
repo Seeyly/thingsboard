@@ -78,7 +78,7 @@ export const resolveBreakpoint = (breakpoint: string): string => {
   return breakpoint;
 };
 
-export const helpBaseUrl = 'https://thingsboard.io';
+export const helpBaseUrl = 'https://#';
 
 export const HelpLinks = {
   linksMap: {

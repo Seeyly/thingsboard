@@ -214,7 +214,8 @@ import { ImageReferencesComponent } from '@shared/components/image/image-referen
 import { ImagesInUseDialogComponent } from '@shared/components/image/images-in-use-dialog.component';
 import { GalleryImageInputComponent } from '@shared/components/image/gallery-image-input.component';
 import { MultipleGalleryImageInputComponent } from '@shared/components/image/multiple-gallery-image-input.component';
-
+import {DevUIModule} from 'ng-devui';
+import { DatepickerProModule } from 'ng-devui/datepicker-pro';
 export function MarkedOptionsFactory(markedOptionsService: MarkedOptionsService) {
   return markedOptionsService;
 }
@@ -470,7 +471,9 @@ export function MarkedOptionsFactory(markedOptionsService: MarkedOptionsService)
         useFactory: MarkedOptionsFactory,
         deps: [MarkedOptionsService]
       }
-    })
+    }),
+    DevUIModule,
+    DatepickerProModule
   ],
   exports: [
     FooterComponent,

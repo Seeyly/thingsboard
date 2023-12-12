@@ -266,7 +266,6 @@ export class AuthService {
     }
     return false;
   }
-
   public defaultUrl(isAuthenticated: boolean, authState?: AuthState, path?: string, params?: any): UrlTree {
     let result: UrlTree = null;
     if (isAuthenticated) {
@@ -284,9 +283,9 @@ export class AuthService {
           if (this.userHasDefaultDashboard(authState)) {
             const dashboardId = authState.userDetails.additionalInfo.defaultDashboardId;
             if (authState.forceFullscreen) {
-              result = this.router.parseUrl(`dashboard/${dashboardId}`);
+              result = this.router.parseUrl(`bim/dashboard/${dashboardId}`);
             } else {
-              result = this.router.parseUrl(`dashboards/${dashboardId}`);
+              result = this.router.parseUrl(`bim/dashboards/${dashboardId}`);
             }
           } else if (authState.authUser.isPublic) {
             result = this.router.parseUrl(`dashboard/${authState.lastPublicDashboardId}`);

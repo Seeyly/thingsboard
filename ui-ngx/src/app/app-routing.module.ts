@@ -18,6 +18,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  {
+    path: 'bim',
+    loadChildren:() => import('./modules/bim/bim.module').then(m => m.BimModule)
+  },
   { path: '',
     redirectTo: 'home',
     pathMatch: 'full',
