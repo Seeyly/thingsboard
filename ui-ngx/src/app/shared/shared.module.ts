@@ -216,6 +216,8 @@ import { GalleryImageInputComponent } from '@shared/components/image/gallery-ima
 import { MultipleGalleryImageInputComponent } from '@shared/components/image/multiple-gallery-image-input.component';
 import {DevUIModule} from 'ng-devui';
 import { DatepickerProModule } from 'ng-devui/datepicker-pro';
+import { EmbedImageDialogComponent } from '@shared/components/image/embed-image-dialog.component';
+
 export function MarkedOptionsFactory(markedOptionsService: MarkedOptionsService) {
   return markedOptionsService;
 }
@@ -409,7 +411,8 @@ export function MarkedOptionsFactory(markedOptionsService: MarkedOptionsService)
     ImageReferencesComponent,
     ImagesInUseDialogComponent,
     GalleryImageInputComponent,
-    MultipleGalleryImageInputComponent
+    MultipleGalleryImageInputComponent,
+    EmbedImageDialogComponent
   ],
   imports: [
     CommonModule,
@@ -660,7 +663,8 @@ export function MarkedOptionsFactory(markedOptionsService: MarkedOptionsService)
     ImageReferencesComponent,
     ImagesInUseDialogComponent,
     GalleryImageInputComponent,
-    MultipleGalleryImageInputComponent
+    MultipleGalleryImageInputComponent,
+    EmbedImageDialogComponent
   ]
 })
 export class SharedModule { }
