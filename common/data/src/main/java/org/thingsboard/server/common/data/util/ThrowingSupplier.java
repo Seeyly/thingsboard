@@ -13,8 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.thingsboard.server.service.ws.notification.cmd;
+package org.thingsboard.server.common.data.util;
 
-public interface WsCmd {
-    int getCmdId();
+@FunctionalInterface
+public interface ThrowingSupplier<T> {
+
+    T get() throws Exception;
+
 }
