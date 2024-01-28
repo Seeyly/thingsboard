@@ -58,7 +58,6 @@ import {
 import {
   AlarmsTableKeySettingsComponent
 } from '@home/components/widget/lib/settings/alarm/alarms-table-key-settings.component';
-import { GaugeHighlightComponent } from '@home/components/widget/lib/settings/gauge/gauge-highlight.component';
 import {
   AnalogueRadialGaugeWidgetSettingsComponent
 } from '@home/components/widget/lib/settings/gauge/analogue-radial-gauge-widget-settings.component';
@@ -300,6 +299,15 @@ import {
 import {
   ProgressBarWidgetSettingsComponent
 } from '@home/components/widget/lib/settings/cards/progress-bar-widget-settings.component';
+import {
+  LiquidLevelCardWidgetSettingsComponent
+} from '@home/components/widget/lib/settings/indicator/liquid-level-card-widget-settings.component';
+import {
+  DoughnutWidgetSettingsComponent
+} from '@home/components/widget/lib/settings/chart/doughnut-widget-settings.component';
+import {
+  RangeChartWidgetSettingsComponent
+} from '@home/components/widget/lib/settings/chart/range-chart-widget-settings.component';
 
 @NgModule({
   declarations: [
@@ -318,7 +326,6 @@ import {
     EntitiesTableKeySettingsComponent,
     AlarmsTableWidgetSettingsComponent,
     AlarmsTableKeySettingsComponent,
-    GaugeHighlightComponent,
     AnalogueRadialGaugeWidgetSettingsComponent,
     AnalogueLinearGaugeWidgetSettingsComponent,
     AnalogueCompassWidgetSettingsComponent,
@@ -410,7 +417,10 @@ import {
     WindSpeedDirectionWidgetSettingsComponent,
     SignalStrengthWidgetSettingsComponent,
     ValueChartCardWidgetSettingsComponent,
-    ProgressBarWidgetSettingsComponent
+    ProgressBarWidgetSettingsComponent,
+    LiquidLevelCardWidgetSettingsComponent,
+    DoughnutWidgetSettingsComponent,
+    RangeChartWidgetSettingsComponent
   ],
   imports: [
     CommonModule,
@@ -434,7 +444,6 @@ import {
     EntitiesTableKeySettingsComponent,
     AlarmsTableWidgetSettingsComponent,
     AlarmsTableKeySettingsComponent,
-    GaugeHighlightComponent,
     AnalogueRadialGaugeWidgetSettingsComponent,
     AnalogueLinearGaugeWidgetSettingsComponent,
     AnalogueCompassWidgetSettingsComponent,
@@ -526,7 +535,10 @@ import {
     WindSpeedDirectionWidgetSettingsComponent,
     SignalStrengthWidgetSettingsComponent,
     ValueChartCardWidgetSettingsComponent,
-    ProgressBarWidgetSettingsComponent
+    ProgressBarWidgetSettingsComponent,
+    LiquidLevelCardWidgetSettingsComponent,
+    DoughnutWidgetSettingsComponent,
+    RangeChartWidgetSettingsComponent
   ]
 })
 export class WidgetSettingsModule {
@@ -607,5 +619,8 @@ export const widgetSettingsComponentsMap: {[key: string]: Type<IWidgetSettingsCo
   'tb-wind-speed-direction-widget-settings': WindSpeedDirectionWidgetSettingsComponent,
   'tb-signal-strength-widget-settings': SignalStrengthWidgetSettingsComponent,
   'tb-value-chart-card-widget-settings': ValueChartCardWidgetSettingsComponent,
-  'tb-progress-bar-widget-settings': ProgressBarWidgetSettingsComponent
+  'tb-progress-bar-widget-settings': ProgressBarWidgetSettingsComponent,
+  'tb-liquid-level-card-widget-settings': LiquidLevelCardWidgetSettingsComponent,
+  'tb-doughnut-widget-settings': DoughnutWidgetSettingsComponent,
+  'tb-range-chart-widget-settings': RangeChartWidgetSettingsComponent
 };

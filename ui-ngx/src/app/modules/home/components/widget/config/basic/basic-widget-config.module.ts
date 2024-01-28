@@ -70,6 +70,24 @@ import {
 import {
   ProgressBarBasicConfigComponent
 } from '@home/components/widget/config/basic/cards/progress-bar-basic-config.component';
+import {
+  RadialGaugeBasicConfigComponent
+} from '@home/components/widget/config/basic/gauge/radial-gauge-basic-config.component';
+import {
+  ThermometerScaleGaugeBasicConfigComponent
+} from '@home/components/widget/config/basic/gauge/thermometer-scale-gauge-basic-config.component';
+import {
+  CompassGaugeBasicConfigComponent
+} from '@home/components/widget/config/basic/gauge/compass-gauge-basic-config.component';
+import {
+  LiquidLevelCardBasicConfigComponent
+} from '@home/components/widget/config/basic/indicator/liquid-level-card-basic-config.component';
+import {
+  DoughnutBasicConfigComponent
+} from '@home/components/widget/config/basic/chart/doughnut-basic-config.component';
+import {
+  RangeChartBasicConfigComponent
+} from '@home/components/widget/config/basic/chart/range-chart-basic-config.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +109,13 @@ import {
     WindSpeedDirectionBasicConfigComponent,
     SignalStrengthBasicConfigComponent,
     ValueChartCardBasicConfigComponent,
-    ProgressBarBasicConfigComponent
+    ProgressBarBasicConfigComponent,
+    RadialGaugeBasicConfigComponent,
+    ThermometerScaleGaugeBasicConfigComponent,
+    CompassGaugeBasicConfigComponent,
+    LiquidLevelCardBasicConfigComponent,
+    DoughnutBasicConfigComponent,
+    RangeChartBasicConfigComponent
   ],
   imports: [
     CommonModule,
@@ -117,7 +141,13 @@ import {
     WindSpeedDirectionBasicConfigComponent,
     SignalStrengthBasicConfigComponent,
     ValueChartCardBasicConfigComponent,
-    ProgressBarBasicConfigComponent
+    ProgressBarBasicConfigComponent,
+    RadialGaugeBasicConfigComponent,
+    ThermometerScaleGaugeBasicConfigComponent,
+    CompassGaugeBasicConfigComponent,
+    LiquidLevelCardBasicConfigComponent,
+    DoughnutBasicConfigComponent,
+    RangeChartBasicConfigComponent
   ]
 })
 export class BasicWidgetConfigModule {
@@ -137,5 +167,11 @@ export const basicWidgetConfigComponentsMap: {[key: string]: Type<IBasicWidgetCo
   'tb-wind-speed-direction-basic-config': WindSpeedDirectionBasicConfigComponent,
   'tb-signal-strength-basic-config': SignalStrengthBasicConfigComponent,
   'tb-value-chart-card-basic-config': ValueChartCardBasicConfigComponent,
-  'tb-progress-bar-basic-config': ProgressBarBasicConfigComponent
+  'tb-progress-bar-basic-config': ProgressBarBasicConfigComponent,
+  'tb-radial-gauge-basic-config': RadialGaugeBasicConfigComponent,
+  'tb-thermometer-scale-gauge-basic-config': ThermometerScaleGaugeBasicConfigComponent,
+  'tb-compass-gauge-basic-config': CompassGaugeBasicConfigComponent,
+  'tb-liquid-level-card-basic-config': LiquidLevelCardBasicConfigComponent,
+  'tb-doughnut-basic-config': DoughnutBasicConfigComponent,
+  'tb-range-chart-basic-config': RangeChartBasicConfigComponent
 };

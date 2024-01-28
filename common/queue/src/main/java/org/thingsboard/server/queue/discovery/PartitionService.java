@@ -37,6 +37,8 @@ public interface PartitionService {
 
     boolean isMyPartition(ServiceType serviceType, TenantId tenantId, EntityId entityId);
 
+    List<Integer> getMyPartitions(QueueKey queueKey);
+
     /**
      * Received from the Discovery service when network topology is changed.
      * @param currentService - current service information {@link org.thingsboard.server.gen.transport.TransportProtos.ServiceInfo}
@@ -57,13 +59,15 @@ public interface PartitionService {
 
     int resolvePartitionIndex(UUID entityId, int partitions);
 
-    void removeTenant(TenantId tenantId);
+    void evictTenantInfo(TenantId tenantId);
 
     int countTransportsByType(String type);
 
     void updateQueue(TransportProtos.QueueUpdateMsg queueUpdateMsg);
 
     void removeQueue(TransportProtos.QueueDeleteMsg queueDeleteMsg);
+
+    void removeTenant(TenantId tenantId);
 
     boolean isManagedByCurrentService(TenantId tenantId);
 
