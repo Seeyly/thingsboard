@@ -57,6 +57,7 @@ import {
 import { EntityId } from '@shared/models/id/entity-id';
 import { DatePipe } from '@angular/common';
 import { entityTypeTranslations } from '@shared/models/entity-type.models';
+import * as XLSX from 'xlsx';
 
 const i18nRegExp = new RegExp(`{${i18nPrefix}:[^{}]+}`, 'g');
 
@@ -527,5 +528,15 @@ export class UtilsService {
   public base64toObj(b64Encoded: string): any {
     return base64toObj(b64Encoded);
   }
+
+  exportTableToFile(table: any, filename: string) {
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(table);
+    const workbook: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+    XLSX.writeFile(workbook, `${filename}.xlsx`);
+  }
+
+
+
 
 }

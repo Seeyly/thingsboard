@@ -723,7 +723,8 @@ spring:
     # Database driver for Spring JPA - org.postgresql.Driver
     driverClassName: "${SPRING_DRIVER_CLASS_NAME:org.postgresql.Driver}"
 #    url: "${SPRING_DATASOURCE_URL:jdbc:postgresql://101.35.1.124:5432/thingsboard3.6}"
-    url: "${SPRING_DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5432/thingsboard3.6.2}"
+    url: "${SPRING_DATASOURCE_URL:jdbc:postgresql://152.32.215.148:5432/thingsboard3.6.2}"
+#    url: "${SPRING_DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5432/thingsboard3.6.2}"
     username: "${SPRING_DATASOURCE_USERNAME:postgres}"
     password: "${SPRING_DATASOURCE_PASSWORD:qwer}"
     hikari:

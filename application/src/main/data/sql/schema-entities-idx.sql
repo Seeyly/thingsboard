@@ -22,10 +22,10 @@ CREATE INDEX IF NOT EXISTS idx_alarm_tenant_created_time ON alarm(tenant_id, cre
 
 -- Drop index by 'status' column and replace with new indexes that has only active alarms;
 CREATE INDEX IF NOT EXISTS idx_alarm_originator_alarm_type_active
-    ON alarm USING btree (originator_id, type) WHERE cleared = false;
+ON alarm USING btree (originator_id, type) WHERE cleared = false;
 
 CREATE INDEX IF NOT EXISTS idx_alarm_tenant_alarm_type_active
-    ON alarm USING btree (tenant_id, type) WHERE cleared = false;
+ON alarm USING btree (tenant_id, type) WHERE cleared = false;
 
 CREATE INDEX IF NOT EXISTS idx_alarm_tenant_alarm_type_created_time ON alarm(tenant_id, type, created_time DESC);
 
@@ -106,15 +106,15 @@ CREATE INDEX IF NOT EXISTS idx_notification_template_tenant_id_created_time ON n
 CREATE INDEX IF NOT EXISTS idx_notification_rule_tenant_id_trigger_type_created_time ON notification_rule(tenant_id, trigger_type, created_time DESC);
 
 CREATE INDEX IF NOT EXISTS idx_notification_request_tenant_id_user_created_time ON notification_request(tenant_id, created_time DESC)
-    WHERE originator_entity_type = 'USER';
+WHERE originator_entity_type = 'USER';
 
 CREATE INDEX IF NOT EXISTS idx_notification_request_tenant_id ON notification_request(tenant_id);
 
 CREATE INDEX IF NOT EXISTS idx_notification_request_rule_id_originator_entity_id ON notification_request(rule_id, originator_entity_id)
-    WHERE originator_entity_type = 'ALARM';
+WHERE originator_entity_type = 'ALARM';
 
 CREATE INDEX IF NOT EXISTS idx_notification_request_status ON notification_request(status)
-    WHERE status = 'SCHEDULED';
+WHERE status = 'SCHEDULED';
 
 CREATE INDEX IF NOT EXISTS idx_notification_id ON notification(id);
 
