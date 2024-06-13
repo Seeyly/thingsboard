@@ -1,5 +1,5 @@
 ///
-/// Copyright © 2016-2023 The Thingsboard Authors
+/// Copyright © 2016-2024 The Thingsboard Authors
 ///
 /// Licensed under the Apache License, Version 2.0 (the "License");
 /// you may not use this file except in compliance with the License.
@@ -56,7 +56,7 @@ import {
 } from './flot-widget.models';
 import * as moment_ from 'moment';
 import tinycolor from 'tinycolor2';
-import { AggregationType } from '@shared/models/time/time.models';
+import { AggregationType, IntervalMath } from '@shared/models/time/time.models';
 import { CancelAnimationFrame } from '@core/services/raf.service';
 import { UtilsService } from '@core/services/utils.service';
 import { DataKeyType } from '@shared/models/telemetry/telemetry.models';
@@ -207,8 +207,8 @@ export class TbFlot {
 
       if (this.settings.yaxis) {
         this.yaxis.font.color = this.settings.yaxis.color || this.yaxis.font.color;
-        this.yaxis.min = isDefined(this.settings.yaxis.min) ? this.settings.yaxis.min : null;
-        this.yaxis.max = isDefined(this.settings.yaxis.max) ? this.settings.yaxis.max : null;
+        this.yaxis.min = isNumber(this.settings.yaxis.min) ? this.settings.yaxis.min : null;
+        this.yaxis.max = isNumber(this.settings.yaxis.max) ? this.settings.yaxis.max : null;
         this.yaxis.label = this.utils.customTranslation(this.settings.yaxis.title, this.settings.yaxis.title) || null;
         this.yaxis.labelFont.color = this.yaxis.font.color;
         this.yaxis.labelFont.size = this.yaxis.font.size + 2;
@@ -559,7 +559,7 @@ export class TbFlot {
           this.subscription.timeWindowConfig.aggregation.type === AggregationType.NONE) {
           this.options.series.bars.barWidth = this.defaultBarWidth;
         } else {
-          this.options.series.bars.barWidth = this.subscription.timeWindow.interval * 0.6;
+          this.options.series.bars.barWidth = IntervalMath.numberValue(this.subscription.timeWindow.interval) * 0.6;
         }
       }
       this.options.xaxes[0].min = this.subscription.timeWindow.minTime;
@@ -664,7 +664,7 @@ export class TbFlot {
               this.subscription.timeWindowConfig.aggregation.type === AggregationType.NONE) {
               this.options.series.bars.barWidth = this.defaultBarWidth;
             } else {
-              this.options.series.bars.barWidth = this.subscription.timeWindow.interval * 0.6;
+              this.options.series.bars.barWidth = IntervalMath.numberValue(this.subscription.timeWindow.interval) * 0.6;
             }
           }
 
@@ -682,7 +682,7 @@ export class TbFlot {
                 this.subscription.timeWindowConfig.aggregation.type === AggregationType.NONE) {
                 this.plot.getOptions().series.bars.barWidth = this.defaultBarWidth;
               } else {
-                this.plot.getOptions().series.bars.barWidth = this.subscription.timeWindow.interval * 0.6;
+                this.plot.getOptions().series.bars.barWidth = IntervalMath.numberValue(this.subscription.timeWindow.interval) * 0.6;
               }
             }
             this.updateData();
@@ -896,8 +896,8 @@ export class TbFlot {
       tickSize = yaxis.tickSize;
     }
     const position = keySettings.axisPosition && keySettings.axisPosition.length ? keySettings.axisPosition : 'left';
-    const min = isDefined(keySettings.axisMin) ? keySettings.axisMin : yaxis.min;
-    const max = isDefined(keySettings.axisMax) ? keySettings.axisMax : yaxis.max;
+    const min = isNumber(keySettings.axisMin) ? keySettings.axisMin : yaxis.min;
+    const max = isNumber(keySettings.axisMax) ? keySettings.axisMax : yaxis.max;
     yaxis.label = label;
     yaxis.min = min;
     yaxis.max = max;

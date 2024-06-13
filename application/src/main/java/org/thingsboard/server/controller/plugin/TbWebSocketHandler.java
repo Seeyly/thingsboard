@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016-2023 The Thingsboard Authors
+ * Copyright © 2016-2024 The Thingsboard Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,9 +43,10 @@ import org.thingsboard.server.common.data.limit.LimitedApi;
 import org.thingsboard.server.common.data.tenant.profile.DefaultTenantProfileConfiguration;
 import org.thingsboard.server.config.WebSocketConfiguration;
 import org.thingsboard.server.dao.tenant.TbTenantProfileCache;
-import org.thingsboard.server.dao.util.limits.RateLimitService;
+import org.thingsboard.server.cache.limits.RateLimitService;
 import org.thingsboard.server.queue.util.TbCoreComponent;
 import org.thingsboard.server.service.security.auth.jwt.JwtAuthenticationProvider;
+import org.thingsboard.server.service.security.exception.JwtExpiredTokenException;
 import org.thingsboard.server.service.security.model.SecurityUser;
 import org.thingsboard.server.service.security.model.UserPrincipal;
 import org.thingsboard.server.service.subscription.SubscriptionErrorCode;
@@ -232,6 +233,9 @@ public class TbWebSocketHandler extends TextWebSocketHandler implements WebSocke
         } catch (InvalidParameterException e) {
             log.warn("[{}] Failed to start session", session.getId(), e);
             session.close(CloseStatus.BAD_DATA.withReason(e.getMessage()));
+        } catch (JwtExpiredTokenException e) {
+            log.trace("[{}] Failed to start session", session.getId(), e);
+            session.close(CloseStatus.SERVER_ERROR.withReason(e.getMessage()));
         } catch (Exception e) {
             log.warn("[{}] Failed to start session", session.getId(), e);
             session.close(CloseStatus.SERVER_ERROR.withReason(e.getMessage()));
@@ -533,6 +537,18 @@ public class TbWebSocketHandler extends TextWebSocketHandler implements WebSocke
         } else {
             log.warn("[{}] Failed to find session by external id", externalId);
         }
+    }
+
+    @Override
+    public boolean isOpen(String externalId) {
+        String internalId = externalSessionMap.get(externalId);
+        if (internalId != null) {
+            SessionMetaData sessionMd = getSessionMd(internalId);
+            if (sessionMd != null) {
+                return sessionMd.session.isOpen();
+            }
+        }
+        return false;
     }
 
     private boolean checkLimits(WebSocketSession session, WebSocketSessionRef sessionRef) throws IOException {
