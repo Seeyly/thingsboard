@@ -214,6 +214,8 @@ import { ImageReferencesComponent } from '@shared/components/image/image-referen
 import { ImagesInUseDialogComponent } from '@shared/components/image/images-in-use-dialog.component';
 import { GalleryImageInputComponent } from '@shared/components/image/gallery-image-input.component';
 import { MultipleGalleryImageInputComponent } from '@shared/components/image/multiple-gallery-image-input.component';
+import { EmbedImageDialogComponent } from '@shared/components/image/embed-image-dialog.component';
+
 import {DevUIModule} from 'ng-devui';
 import { DatepickerProModule } from 'ng-devui/datepicker-pro';
 import { EmbedImageDialogComponent } from '@shared/components/image/embed-image-dialog.component';
