@@ -123,6 +123,7 @@ export class BimComponent implements OnInit {
   ]
 
   ngOnInit(): void {
+    console.log(1)
     this.changeMenu(this.menus1[0])
   }
   activeComponentChanged(activeComponent: any) {

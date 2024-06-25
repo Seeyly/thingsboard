@@ -15,6 +15,10 @@
  */
 const forwardUrl = "http://152.32.215.148:8080";
 const wsForwardUrl = "ws://152.32.215.148:8080";
+
+
+// const forwardUrl = "http://127.0.0.1:8080";
+// const wsForwardUrl = "ws://127.0.0.1:8080";
 const ruleNodeUiforwardUrl = forwardUrl;
 
 const PROXY_CONFIG = {

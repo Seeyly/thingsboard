@@ -223,28 +223,28 @@ export class MenuService {
             path: '/settings/general',
             icon: 'settings_applications'
           },
-          // {
-          //   id: 'mail_server',
-          //   name: 'admin.outgoing-mail',
-          //   type: 'link',
-          //   path: '/settings/outgoing-mail',
-          //   icon: 'mail'
-          // },
-          // {
-          //   id: 'notification_settings',
-          //   name: 'admin.notifications',
-          //   fullName: 'admin.notifications-settings',
-          //   type: 'link',
-          //   path: '/settings/notifications',
-          //   icon: 'mdi:message-badge'
-          // },
-          // {
-          //   id: 'queues',
-          //   name: 'admin.queues',
-          //   type: 'link',
-          //   path: '/settings/queues',
-          //   icon: 'swap_calls'
-          // },
+          {
+            id: 'mail_server',
+            name: 'admin.outgoing-mail',
+            type: 'link',
+            path: '/settings/outgoing-mail',
+            icon: 'mail'
+          },
+          {
+            id: 'notification_settings',
+            name: 'admin.notifications',
+            fullName: 'admin.notifications-settings',
+            type: 'link',
+            path: '/settings/notifications',
+            icon: 'mdi:message-badge'
+          },
+          {
+            id: 'queues',
+            name: 'admin.queues',
+            type: 'link',
+            path: '/settings/queues',
+            icon: 'swap_calls'
+          },
         ]
       },
       {
@@ -535,13 +535,13 @@ export class MenuService {
               }
             ]
           },
-          // {
-          //   id: 'images',
-          //   name: '图库',
-          //   type: 'link',
-          //   path: '/resources/images',
-          //   icon: 'filter'
-          // },
+          {
+            id: 'images',
+            name: 'image.gallery',
+            type: 'link',
+            path: '/resources/images',
+            icon: ''
+          },
           {
             id: 'resources_library',
             name: 'resource.resources-library',
@@ -870,14 +870,14 @@ export class MenuService {
             type: 'link',
             path: '/entities/assets',
             icon: 'domain'
+          },
+          {
+            id: 'entity_views',
+            name: 'entity-view.entity-views',
+            type: 'link',
+            path: '/entities/entityViews',
+            icon: 'view_quilt'
           }
-          // {
-          //   id: 'entity_views',
-          //   name: 'entity-view.entity-views',
-          //   type: 'link',
-          //   path: '/entities/entityViews',
-          //   icon: 'view_quilt'
-          // }
         ]
       }
     );

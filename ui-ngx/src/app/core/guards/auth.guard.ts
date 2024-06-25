@@ -60,7 +60,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     return this.getAuthState().pipe(
       mergeMap((authState) => {
         const url: string = state.url;
-
         let lastChild = state.root;
         const urlSegments: string[] = [];
         if (lastChild.url) {
@@ -78,16 +77,21 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         const params = lastChild.params || {};
         const isPublic = data.module === 'public';
 
+
         if (!authState.isAuthenticated || isPublic) {
+
           if (publicId && publicId.length > 0) {
+
             this.authService.setUserFromJwtToken(null, null, false);
             this.authService.reloadUser();
             return of(false);
           } else if (!isPublic) {
+
             this.authService.redirectUrl = url;
             // this.authService.gotoDefaultPlace(false);
             return of(this.authService.defaultUrl(false));
           } else {
+            console.log(333)
             if (path === 'login') {
               return forkJoin([this.authService.loadOAuth2Clients()]).pipe(
                 map(() => {
@@ -110,6 +114,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
           }
         } else {
           if (authState.authUser.isPublic) {
+
             if (this.authService.parsePublicId() !== publicId) {
               if (publicId && publicId.length > 0) {
                 this.authService.setUserFromJwtToken(null, null, false);
@@ -129,6 +134,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
             return of(false);
           }
           const defaultUrl = this.authService.defaultUrl(true, authState, path, params);
+          console.log('defaultUrl', defaultUrl)
           if (defaultUrl) {
             // this.authService.gotoDefaultPlace(true);
             return of(defaultUrl);

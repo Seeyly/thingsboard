@@ -221,7 +221,6 @@ import { WidgetButtonComponent } from '@shared/components/button/widget-button.c
 
 import {DevUIModule} from 'ng-devui';
 import { DatepickerProModule } from 'ng-devui/datepicker-pro';
-import { EmbedImageDialogComponent } from '@shared/components/image/embed-image-dialog.component';
 
 export function MarkedOptionsFactory(markedOptionsService: MarkedOptionsService) {
   return markedOptionsService;

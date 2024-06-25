@@ -24,9 +24,9 @@
     <header class="tb-nav-header">
       <mat-toolbar color="primary" class="tb-nav-header-toolbar">
         <div fxFlex="auto" fxLayout="row" fxFlexAlign="center" style="justify-content: flex-start">
-<!--          <img [src]="logo"-->
-<!--               aria-label="logo" class="tb-logo-title"/>-->
-          <div class="log-txt">盘古大观中央空调监测系统</div>
+          <img [src]="logo"
+               aria-label="logo" class="tb-logo-title"/>
+          <div class="log-txt">人民银行山东分行</div>
         </div>
       </mat-toolbar>
     </header>
@@ -37,9 +37,13 @@
   <mat-sidenav-content>
     <div fxLayout="column" role="main" style="height: 100%;">
       <mat-toolbar fxLayout="row" color="primary" class="tb-primary-toolbar">
+<!--        <button [fxShow]="true" mat-icon-button id="mai0"-->
+<!--               (click)="sidenav.toggle()">-->
+<!--          <mat-icon class="material-icons">menu</mat-icon>-->
+<!--        </button>-->
         <button [fxShow]="!forceFullscreen" mat-icon-button id="main"
                 [ngClass]="{'tb-invisible': displaySearchMode()}"
-                fxHide.gt-sm (click)="sidenav.toggle()">
+                (click)="sidenav.toggle()">
           <mat-icon class="material-icons">menu</mat-icon>
         </button>
         <button [fxShow]="forceFullscreen" mat-icon-button
@@ -67,9 +71,9 @@
           <mat-icon class="material-icons">search</mat-icon>
         </button>
 
-        <dvi   routerLink="/bim">
-          可视化大屏
-        </dvi>
+<!--        <dvi   routerLink="/bim">-->
+<!--          可视化大屏-->
+<!--        </dvi>-->
 
         <button *ngIf="fullscreenEnabled" [fxShow]="!displaySearchMode()"
                 mat-icon-button fxHide.lt-md (click)="toggleFullscreen()">
@@ -81,6 +85,7 @@
       <mat-progress-bar color="warn" style="z-index: 10; margin-bottom: -4px; width: 100%;" mode="indeterminate"
                         *ngIf="!hideLoadingBar && (isLoading$ | async)">
       </mat-progress-bar>
+
       <div fxFlex fxLayout="column" tb-toast class="tb-main-content">
         <router-outlet (activate)="activeComponentChanged($event)"></router-outlet>
       </div>

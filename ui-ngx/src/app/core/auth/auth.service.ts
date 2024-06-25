@@ -266,8 +266,10 @@ export class AuthService {
     }
     return false;
   }
+
   public defaultUrl(isAuthenticated: boolean, authState?: AuthState, path?: string, params?: any): UrlTree {
     let result: UrlTree = null;
+    console.log('defaultUrl', 111)
     if (isAuthenticated) {
       if (authState.authUser.authority === Authority.PRE_VERIFICATION_TOKEN) {
         result = this.router.parseUrl('login/mfa');
@@ -282,10 +284,11 @@ export class AuthService {
         if (authState.authUser.authority === Authority.TENANT_ADMIN || authState.authUser.authority === Authority.CUSTOMER_USER) {
           if (this.userHasDefaultDashboard(authState)) {
             const dashboardId = authState.userDetails.additionalInfo.defaultDashboardId;
+            console.log(dashboardId)
             if (authState.forceFullscreen) {
-              result = this.router.parseUrl(`bim/dashboard/${dashboardId}`);
+              result = this.router.parseUrl(`dashboard/${dashboardId}`);
             } else {
-              result = this.router.parseUrl(`bim/dashboards/${dashboardId}`);
+              result = this.router.parseUrl(`dashboards/${dashboardId}`);
             }
           } else if (authState.authUser.isPublic) {
             result = this.router.parseUrl(`dashboard/${authState.lastPublicDashboardId}`);

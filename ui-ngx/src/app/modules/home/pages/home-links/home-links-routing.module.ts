@@ -59,6 +59,7 @@ export const homeDashboardResolver: ResolveFn<HomeDashboard> = (
 ): Observable<HomeDashboard> =>
   dashboardService.getHomeDashboard().pipe(
     mergeMap((dashboard) => {
+      console.log(112)
       if (!dashboard) {
         let dashboard$: Observable<HomeDashboard>;
         const authority = getCurrentAuthUser(store).authority;
